@@ -1,0 +1,25 @@
+# Edge Voice Activator — host (laptop) dependencies
+# Install:  python -m pip install -r requirements.txt
+# Python:   3.10+ (developed on 3.12)
+
+# --- Core relay -------------------------------------------------------------
+websockets>=12.0            # ESP32 <-> browser fan-out relay
+numpy>=1.24                 # RMS / DSP aggregation on the host
+
+# --- Audio decode -----------------------------------------------------------
+# The ESP32 streams Opus-compressed 20 ms frames. `av` bundles a working Opus
+# decoder; `opuslib` is a lighter alternative but needs a system libopus.
+av>=11.0
+
+# --- ASR (transcript panel) -------------------------------------------------
+# Faster-Whisper is the default: ~4x faster than openai-whisper on CPU and it
+# exposes word-level timestamps, which the first-word proof needs.
+# Fall back to `openai-whisper` if you cannot install ctranslate2 on your box.
+faster-whisper>=1.0
+
+# --- Dev / quality gates ----------------------------------------------------
+pytest>=8.0
+pytest-cov>=5.0
+pytest-asyncio>=0.23
+ruff>=0.5
+mypy>=1.10

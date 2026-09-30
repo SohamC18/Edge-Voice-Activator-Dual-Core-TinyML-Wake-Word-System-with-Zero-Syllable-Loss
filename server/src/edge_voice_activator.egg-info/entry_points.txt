@@ -1,0 +1,2 @@
+[console_scripts]
+edge-voice = edge_voice.__main__:main
